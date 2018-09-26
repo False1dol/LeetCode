@@ -1,0 +1,29 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        maxlenstring = ""
+        substring = ""
+        i = 0
+        while i < len(s):
+            #print(s[i])
+            if s[i] in substring:
+                if len(maxlenstring) < len(substring):
+                    maxlenstring = substring
+                    #print("oldI " + str(i))
+                    #print(s[:i])
+                j = substring.index(s[i])
+                #print(j)
+                s = s[j+1:]
+                #print(s)
+                i = -1
+                #print("newI " + str(i))
+                substring = ""
+                #print("replacedstring " + substring)
+            else:
+                substring += s[i]
+                #print("addedstr " +substring)
+            i += 1
+        return max(len(substring),len(maxlenstring))
